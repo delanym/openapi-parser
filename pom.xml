@@ -346,7 +346,7 @@
                 <dependencies>
                     <dependency>
                         <groupId>org.checkerframework</groupId>
-                        <artifactId>checker</artifactId>
+                        <artifactId>checker-qual</artifactId>
                         <version>3.27.0</version>
                     </dependency>
                 </dependencies>
@@ -354,7 +354,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.checkerframework</groupId>
-                    <artifactId>checker</artifactId>
+                    <artifactId>checker-qual</artifactId>
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
@@ -364,6 +364,11 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.10.1</version>
                         <configuration>
+                            <!--              <fork>true</fork> &lt;!&ndash; Must fork or else JVM arguments are ignored. &ndash;&gt;-->
+                            <compilerArguments>
+                                <Xmaxerrs>5</Xmaxerrs>
+                                <Xmaxwarns>5</Xmaxwarns>
+                            </compilerArguments>
                             <annotationProcessorPaths combine.children="append">
                                 <path>
                                     <groupId>org.checkerframework</groupId>
@@ -373,8 +378,8 @@
                             </annotationProcessorPaths>
                             <annotationProcessors combine.children="append">
                                 <annotationProcessor>org.checkerframework.checker.resourceleak.ResourceLeakChecker</annotationProcessor>
-                                <!--                <annotationProcessor>org.checkerframework.checker.interning.InterningChecker</annotationProcessor>-->
-                                <!--                <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>-->
+                                <annotationProcessor>org.checkerframework.checker.interning.InterningChecker</annotationProcessor>
+                                <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
                             </annotationProcessors>
                             <compilerArgs combine.children="append">
                                 <arg>-Awarns</arg>
